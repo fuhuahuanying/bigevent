@@ -14,9 +14,14 @@
 
 <body>
   <div class="container-fluid">
-    <div class="row spannel_list" id="huoquzhi">
-
-      <!-- <div class="col-sm-3 col-xs-6">
+    <div class="row spannel_list">
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel">
+          <em>10015</em><span>篇</span>
+          <b>总文章数</b>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
         <div class="spannel scolor01">
           <em>123</em><span>篇</span>
           <b>日新增文章数</b>
@@ -31,7 +36,7 @@
       <div class="col-sm-3 col-xs-6">
         <div class="spannel scolor03">
           <em>123</em><span>条</span>
-          <b>日新增评论数</b> -->
+          <b>日新增评论数</b>
         </div>
       </div>
     </div>
@@ -54,49 +59,7 @@
 
   <script src="js/jquery-1.12.4.min.js"></script>
   <script type="text/javascript" src="js/echarts.min.js"></script>
-  <script src="../js/template-web.js"></script>
-  <script src="../js/jquery.pagination.min.js"></script>
-  <!-- <script src="../js/jquery-1.12.4.min.js"></script> -->
-  <script type="text/html" id="jijizha">
-    {{each}}
-    <div class="col-sm-3 col-xs-6">
-        <div class="spannel">
-          <em>{{$value.totalArticle}}</em><span>篇</span>
-          <b>总文章数</b>
-        </div>
-      </div>
-      <div class="col-sm-3 col-xs-6">
-          <div class="spannel scolor01">
-            <em>{{$value.dayArticle}}</em><span>篇</span>
-            <b>日新增文章数</b>
-          </div>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-          <div class="spannel scolor02">
-            <em>{{$value.totalComment}}</em><span>条</span>
-            <b>评论总数</b>
-          </div>
-        </div>
-        <div class="col-sm-3 col-xs-6">
-          <div class="spannel scolor03">
-            <em>{{$value.dayComment}}</em><span>条</span>
-            <b>日新增评论数</b>
-          </div>
-        </div>
-      {{/each}}
-  </script>
   <script>
-
-    $.ajax({
-      url: 'http://47.111.184.55:8888/api/v1/admin/data/info',
-      type: 'get',
-      success: function (data) {
-        // console.log(data);
-        var html = template('jijizha', { data: data })
-        $('#huoquzhi').html(html)
-      }
-    })
-
     var oChart = echarts.init(document.getElementById('curve_show'));
     //页面一进来就发送ajax请求,获取真实的月新增文章数
     $.ajax({

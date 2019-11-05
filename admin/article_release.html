@@ -19,7 +19,7 @@
       写文章
     </div>
     <div class="container-fluid common_con">
-      <form class="form-horizontal article_form">
+      <form class="form-horizontal article_form" id="bigForm">
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">文章标题：</label>
           <div class="col-sm-10">
@@ -29,19 +29,16 @@
         <div class="form-group">
           <label for="inputPassword3" class="col-sm-2 control-label">文章封面：</label>
           <div class="col-sm-10">
-            <img src="./images/2.jpg" style="height:120px;" alt="">
-            <input type="file" name="cover" id="exampleInputFile">
+            <img src="./images/2.jpg" style="height:120px;" alt="" id="img">
+            <input type="file" id="exampleInputFile" name="cover">
+            <input type="hidden" name="cover" id="hidnipt">
           </div>
         </div>
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">文章类别：</label>
           <div class="col-sm-4">
             <select class="form-control" name="categoryId" id="article_category">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              
             </select>
           </div>
         </div>
@@ -61,15 +58,15 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">文章内容：</label>
           <div class="col-sm-10">
-            <textarea class="form-control" id="rich_content" placeholder="文章内容">
+            <textarea class="form-control" id="rich_content" placeholder="文章内容" name="content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda fugiat illo nihil molestias ab. Laborum eius non atque, totam sapiente quae obcaecati assumenda ratione inventore pariatur maiores, qui libero delectus.
                             </textarea>
           </div>
         </div>
         <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-success btn-release">发布</button>
-            <button type="submit" class="btn btn-default">存为草稿</button>
+          <div class="col-sm-offset-2 col-sm-10" id="btn">
+            <button type="submit" class="btn btn-success btn-release" name="state" id="submit-btn">发布</button>
+            <button type="submit" class="btn btn-default" >存为草稿</button>
           </div>
         </div>
       </form>
@@ -82,10 +79,14 @@
   <script src="js/tinymce/js/tinymce_setup.js"></script>
   <script src="./js/moment.js"></script>
   <script src="./js/template-web.js"></script>
-  
+  <script src="assets/article_release.js"></script>
+  <script type="text/html" id="selec">
+    {{each data}}
+    <option>{{$value.name}}</option>
+    {{/each}}
+  </script>
   <!-- 业务逻辑代码 -->
   <script>
-    
   </script>
 </body>
 
