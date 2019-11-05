@@ -15,7 +15,7 @@
 <body>
   <div class="sider">
     <a href="#" class="logo"><img src="images/logo02.png" alt="logo"></a>
-    <div class="user_info">
+    <div class="user_info" id="indexBox">
       <img src="images/2.jpg" alt="person">
       <span>欢迎&nbsp;&nbsp;李思思</span>
       <b>管理员</b>
@@ -74,15 +74,15 @@
   </div>
 
   <div class="header_bar">
-    <form class="search_form" id="sousuo">
-      <input type="text" placeholder="请输入搜索内容" id="keys">
+    <form class="search_form">
+      <input type="text" placeholder="请输入搜索内容">
       <i class="iconfont icon-search"></i>
     </form>
 
-    <div class="user_center_link">
+    <div class="user_center_link" id='selfBox'>
       <a href="user.html" onclick="setMenu(3,0)" target="main_frame">个人中心</a>
       <img src="images/2.jpg" alt="person">
-      <a href="#"><i class="iconfont icon-tuichu" id="tuii"></i> 退出</a>
+      <a href="#"><i class="iconfont icon-tuichu" id="logout"></i> 退出</a>
     </div>
   </div>
 
@@ -165,44 +165,24 @@
       }
     }
   </script>
-
   <!-- 业务逻辑代码 -->
-  <script>
-   
-    //搜索按钮
-    $('.search_form').on('submit', function (e) {
-      e.preventDefault()
-      var keys = $(this).find('#keys').val()
-      // console.log(keys);
- 
-
-        // location.href='./search.html?key='+keys
-        location.href='./article_list.html?key='+keys
-    
-    })
-    
-    //退出按钮
-    $('#tuii').on('click', function (e) {
-      //使用confirm询问用户是否需要退出
-      //如果用户点击了确定，返回true
-      var isConfirm = confirm('确定退出？')
-
-      if (isConfirm) {
-        $.ajax({
-          //退出路径找不到
-          url: 'http://47.111.184.55:8888/api/v1/index/search',
-          type: 'post',
-          success: function () {
-            location.href = 'index.html'
-          },
-          error: function () {
-            alert('退出失败')
-          }
-        })
-      }
-    })
+  <script src="./assets/index.js"></script>
+  <script src="js/template-web.js"></script>
 
 
+  <!-- 上传信息模板 -->
+  <script type="text/html" id="indexTpl">
+    <div class="user_info" id='indexBox'>
+      <img src="{{data.userPic.replace('http://172.16.19.30','http://47.111.184.55')}}" alt="person">
+      <span>欢迎&nbsp;&nbsp;{{data.nickname}}</span>
+      <b>管理员</b>
+    </script>
+
+  <!-- 个人中心模板 -->
+  <script type="text/html" id="selfTpl">
+      <a href="user.html" onclick="setMenu(3,0)" target="main_frame">个人中心</a>
+      <img src="{{data.userPic.replace('http://172.16.19.30','http://47.111.184.55')}}" alt="person">
+      <a href="#"><i class="iconfont icon-tuichu" id="logout"></i> 退出</a>
   </script>
 </body>
 
